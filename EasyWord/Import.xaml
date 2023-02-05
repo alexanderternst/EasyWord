@@ -1,0 +1,68 @@
+﻿<Window x:Class="EasyWord.Import"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasyWord"
+        xmlns:vm="clr-namespace:EasyWord.ViewModels"
+        mc:Ignorable="d"
+        Title="Import"
+        Height="200"
+        Width="700"
+        ResizeMode="CanResizeWithGrip"
+        Icon="Resources/import.ico"
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:ImportWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+            <Button Margin="5"
+                    Content="Datei öffnen"
+                    Width="160"
+                    FontSize="20"
+                    Command="{Binding CmdFileSelector}" />
+            <TextBox Text="{Binding Dateipfad, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Column="1"
+                     Grid.Row="0"
+                     FontSize="20"
+                     Margin="5"
+                     TextWrapping="Wrap"
+                     IsReadOnly="True"
+                     VerticalContentAlignment="Center" />
+        </StackPanel>
+
+        <CheckBox Margin="5"
+                  Content="Wörter ersetzen"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Height="40"
+                  VerticalContentAlignment="Center"
+                  HorizontalAlignment="Left"
+                  IsChecked="{Binding ReplaceWords, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></CheckBox>
+        <Button Content="Importieren"
+                FontSize="20"
+                HorizontalAlignment="Left"
+                Grid.Row="2"
+                Grid.Column="1"
+                VerticalAlignment="Top"
+                Height="40"
+                Width="160"
+                Margin="5"
+                Command="{Binding CmdFileImport}"
+                IsDefault="True" />
+    </Grid>
+</Window>

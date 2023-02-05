@@ -1,0 +1,107 @@
+﻿<Window x:Class="EasyWord.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:EasyWord.ViewModels"
+        xmlns:local="clr-namespace:EasyWord"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d"
+        Title="EasyWord"
+        Height="450"
+        Width="800"
+        ResizeMode="CanResizeWithGrip"
+        Icon="Resources/easyword.ico"
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Optionen"
+                      Command="{Binding CmdOptions}" />
+            <MenuItem Header="Import"
+                      Command="{Binding CmdImport}" />
+            <MenuItem Header="Informationen"
+                      Command="{Binding CmdInfo}" />
+        </Menu>
+
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <lvc:CartesianChart 
+                Grid.Row="5"
+                Grid.Column="1">
+                <lvc:CartesianChart.Series>
+                    <lvc:ColumnSeries Title="Bucket"
+                                      Values="{Binding BucketsChart}"/>
+                </lvc:CartesianChart.Series>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Buckets"
+                              Labels="{Binding bucketsName}" />
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Buckets Übersicht" />
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+
+            <!--Keyword eingabe-->
+            <Label Content="{Binding Path=KeywordLabel}"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   Margin="10,0,0,0" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Margin="10"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     IsReadOnly="True" />
+
+            <!--Wort übersetzen-->
+            <Label Content="{Binding Path=AnswereLabel}"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   Margin="10,0,0,0" />
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Margin="10"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding Answere, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+            <!--Kontorlieren button-->
+            <Button Content="Kontrollieren"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    Margin="10"
+                    HorizontalAlignment="Left"
+                    Width="180"
+                    IsDefault="True"
+                    Command="{Binding CmdCorrect}" />
+
+            <!--Button zum zu lernede Wörter Löschen-->
+            <Button Content="Zu lernende Wörter löschen"
+                    Grid.Column="2"
+                    Grid.Row="5"
+                    Margin="10"
+                    Width="180"
+                    Height="40"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Command="{Binding CmdDeleteWordList}" />
+            <Label Grid.Column="2" Content="{Binding Path=CurrentWord.Bucket, Mode=OneWay}" 
+                   HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontSize="15" Height="54" Width="74"/>
+        </Grid>
+    </DockPanel>
+</Window>
