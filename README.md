@@ -4,7 +4,8 @@ Zusätzlich kann die Gross-/Kleinschreibung Erkennung deaktiviert werden. Wörte
 Dieses Programm bietet auch die Funktion alle Wörter zu löschen, und Wörter per CSV Datei zu importieren.
 Einstellungen und Wörter werden bei schliessen/öffnen des Programmes durch eine JSON Datei exportiert/importiert.  
 Um dieses Programm zu realisieren haben wir WPF und C# verwendet. Zur Darstellung wo im Programm sich ein Wort befindet, gibt es zusätzlich eine grafische Darstellung.  
-Dieses Projekt habe ich zusammen mit anderen Schülern im Rahmen des ICT Modul 426 abgeschlossen und dabei die Projektmethode Scrum verwendet.
+Dieses Projekt habe ich zusammen mit anderen Schülern im Rahmen des ICT Modul 426 abgeschlossen und dabei die Projektmethode Scrum verwendet.  
+![EasyWord Startseite](https://github.com/alexanderternst/EasyWord/blob/master/EasyWord.png?raw=true)
 
 ## Technologien/Software
 Dieses Projekt wurde auf .NET 6.0 erstellt und folgende NuGet Pakete (mit Versionen) wurden/kamen installiert:  
